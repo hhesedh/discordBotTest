@@ -6,7 +6,7 @@
   "author": "FábioOliveira",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node src/bot.ts"
+    "dev": "ts-node --transpile-only src/bot.ts"
   },
   "dependencies": {
     "discord.js": "^12.3.1"
