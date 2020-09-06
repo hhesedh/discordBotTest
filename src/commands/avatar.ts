@@ -1,10 +1,9 @@
 import { CommandInterface } from "../types/command";
-import { Message } from "discord.js";
 
 const avatar: CommandInterface = {
   name: "avatar",
   description: "Get the avatar URL of the tagged user(s), or your own avatar.",
-  async execute(message: Message) {
+  async execute(message) {
     if (!message.mentions.users.size) {
       await message.channel.send(
         `Your avatar: ${message.author.displayAvatarURL({ dynamic: true })}`
