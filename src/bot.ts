@@ -1,29 +1,14 @@
 if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
-
-import { Client, Collection } from "discord.js";
+import { Client } from "discord.js";
 import { prefix } from "../config.json";
-import fs from "fs";
-import { CommandInterface } from "./types/command";
+import { commandsColletion } from "./handlers/handleCollections";
 
 const client = new Client();
-const commandsColletion = new Collection<string, CommandInterface>();
-
-const commandFiles = fs
-  .readdirSync(__dirname + "/commands")
-  .filter((file) => file.endsWith(".ts"));
-
-for (const file of commandFiles) {
-  const {
-    default: command,
-  }: { default: CommandInterface } = require(`./commands/${file}`);
-  commandsColletion.set(command.name, command);
-}
 
 client.on("ready", () => {
   console.log("Ready!");
-  console.log(commandsColletion);
 });
 
 client.on("message", async (message) => {
